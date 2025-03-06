@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.persistence.*;
 import lombok.Data;
 import lostreport.FindApplication;
+import lostreport.domain.FindRequestCanceled;
 import lostreport.domain.FindRequested;
 
 @Entity
@@ -36,10 +37,16 @@ public class FindManage {
 
     private String tmpPhoneStatus;
 
-    @PostPersist
-    public void onPostPersist() {
+    @PrePersist
+    public void onPrePersist() {
         FindRequested findRequested = new FindRequested(this);
         findRequested.publishAfterCommit();
+    }
+
+    @PreRemove
+    public void onPreRemove() {
+        FindRequestCanceled findRequestCanceled = new FindRequestCanceled(this);
+        findRequestCanceled.publishAfterCommit();
     }
 
     public static FindManageRepository repository() {
@@ -49,15 +56,10 @@ public class FindManage {
         return findManageRepository;
     }
 
-    //<<< Clean Arch / Port Method
     public void findRequestCancel() {
-        //implement business logic here:
-
-        FindRequestCanceled findRequestCanceled = new FindRequestCanceled(this);
-        findRequestCanceled.publishAfterCommit();
+        //
     }
 
-    //>>> Clean Arch / Port Method
     //<<< Clean Arch / Port Method
     public void findRequestFinish() {
         //implement business logic here:

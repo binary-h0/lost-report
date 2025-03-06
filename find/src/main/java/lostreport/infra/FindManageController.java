@@ -21,29 +21,6 @@ public class FindManageController {
     FindManageRepository findManageRepository;
 
     @RequestMapping(
-        value = "/findManages/{id}/findrequestcancel",
-        method = RequestMethod.PUT,
-        produces = "application/json;charset=UTF-8"
-    )
-    public FindManage findRequestCancel(
-        @PathVariable(value = "id") Long id,
-        HttpServletRequest request,
-        HttpServletResponse response
-    ) throws Exception {
-        System.out.println("##### /findManage/findRequestCancel  called #####");
-        Optional<FindManage> optionalFindManage = findManageRepository.findById(
-            id
-        );
-
-        optionalFindManage.orElseThrow(() -> new Exception("No Entity Found"));
-        FindManage findManage = optionalFindManage.get();
-        findManage.findRequestCancel();
-
-        findManageRepository.save(findManage);
-        return findManage;
-    }
-
-    @RequestMapping(
         value = "/findManages/{id}/findrequestfinish",
         method = RequestMethod.PUT,
         produces = "application/json;charset=UTF-8"

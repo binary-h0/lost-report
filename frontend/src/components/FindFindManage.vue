@@ -55,6 +55,13 @@
                 <v-btn
                     color="primary"
                     text
+                    @click="save"
+                >
+                    FindRequestCancel
+                </v-btn>
+                <v-btn
+                    color="primary"
+                    text
                     @click="editMode = false"
                     v-if="editMode && !isNew"
                 >
@@ -64,14 +71,6 @@
         </v-card-actions>
         <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn
-                v-if="!editMode"
-                color="primary"
-                text
-                @click="findRequestCancel"
-            >
-                FindRequestCancel
-            </v-btn>
             <v-btn
                 v-if="!editMode"
                 color="primary"
@@ -245,25 +244,6 @@
             },
             change(){
                 this.$emit('input', this.value);
-            },
-            async findRequestCancel() {
-                try {
-                    if(!this.offline) {
-                        var temp = await axios.put(axios.fixUrl(this.value._links['findrequestcancel'].href))
-                        for(var k in temp.data) {
-                            this.value[k]=temp.data[k];
-                        }
-                    }
-
-                    this.editMode = false;
-                } catch(e) {
-                    this.snackbar.status = true
-                    if(e.response && e.response.data.message) {
-                        this.snackbar.text = e.response.data.message
-                    } else {
-                        this.snackbar.text = e
-                    }
-                }
             },
             async findRequestFinish() {
                 try {

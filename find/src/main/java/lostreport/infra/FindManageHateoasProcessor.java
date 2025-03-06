@@ -16,14 +16,6 @@ public class FindManageHateoasProcessor
             Link
                 .of(
                     model.getRequiredLink("self").getHref() +
-                    "/findrequestcancel"
-                )
-                .withRel("findrequestcancel")
-        );
-        model.add(
-            Link
-                .of(
-                    model.getRequiredLink("self").getHref() +
                     "/findrequestfinish"
                 )
                 .withRel("findrequestfinish")
