@@ -11,7 +11,6 @@ import lostreport.FindApplication;
 import lostreport.domain.AlarmRequested;
 import lostreport.domain.FindRequestCanceled;
 import lostreport.domain.FindRequestFinished;
-import lostreport.domain.FindRequested;
 import lostreport.domain.GpsRequested;
 import lostreport.domain.LockRequested;
 import lostreport.domain.TmpPhoneRequested;
@@ -44,9 +43,6 @@ public class FindManage {
 
     @PostPersist
     public void onPostPersist() {
-        FindRequested findRequested = new FindRequested(this);
-        findRequested.publishAfterCommit();
-
         FindRequestCanceled findRequestCanceled = new FindRequestCanceled(this);
         findRequestCanceled.publishAfterCommit();
 
@@ -73,9 +69,15 @@ public class FindManage {
         return findManageRepository;
     }
 
+    //<<< Clean Arch / Port Method
     public void findRequest() {
-        //
+        //implement business logic here:
+
+        FindRequested findRequested = new FindRequested(this);
+        findRequested.publishAfterCommit();
     }
+
+    //>>> Clean Arch / Port Method
 
     //<<< Clean Arch / Port Method
     public static void findManageStatusUpdate(

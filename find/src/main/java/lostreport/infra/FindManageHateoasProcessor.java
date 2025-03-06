@@ -12,6 +12,12 @@ public class FindManageHateoasProcessor
 
     @Override
     public EntityModel<FindManage> process(EntityModel<FindManage> model) {
+        model.add(
+            Link
+                .of(model.getRequiredLink("self").getHref() + "/findrequest")
+                .withRel("findrequest")
+        );
+
         return model;
     }
 }
