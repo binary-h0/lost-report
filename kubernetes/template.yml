@@ -1,0 +1,171 @@
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: find
+  labels:
+    app: find
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: find
+  template:
+    metadata:
+      labels:
+        app: find
+    spec:
+      containers:
+        - name: find
+          image: username/find:latest
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 10
+          livenessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 120
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 5
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lost phone
+  labels:
+    app: lost phone
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lost phone
+  template:
+    metadata:
+      labels:
+        app: lost phone
+    spec:
+      containers:
+        - name: lost phone
+          image: username/lost phone:latest
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 10
+          livenessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 120
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 5
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kt
+  labels:
+    app: kt
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kt
+  template:
+    metadata:
+      labels:
+        app: kt
+    spec:
+      containers:
+        - name: kt
+          image: username/kt:latest
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 10
+          livenessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 120
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 5
+
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: find
+  labels:
+    app: find
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: find
+
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: lost phone
+  labels:
+    app: lost phone
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: lost phone
+
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: kt
+  labels:
+    app: kt
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: kt
+

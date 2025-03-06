@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lost phone
+  labels:
+    app: lost phone
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lost phone
+  template:
+    metadata:
+      labels:
+        app: lost phone
+    spec:
+      containers:
+        - name: lost phone
+          image: "username/lost phone:latest"
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 10
+          livenessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 120
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 5
