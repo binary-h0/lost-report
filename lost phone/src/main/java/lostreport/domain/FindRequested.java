@@ -10,4 +10,12 @@ import lostreport.infra.AbstractEvent;
 public class FindRequested extends AbstractEvent {
 
     private Long id;
+    private String userId;
+    private String imei;
+    private String gps;
+    private String lockState;
+    private String status;
+    private Date lostAt;
+    private String tmpPhoneImei;
+    private String tmpPhoneStatus;
 }

@@ -73,6 +73,10 @@ public class FindManage {
         return findManageRepository;
     }
 
+    public void findRequest() {
+        //
+    }
+
     //<<< Clean Arch / Port Method
     public static void findManageStatusUpdate(
         ChangedLostDeviceStatus changedLostDeviceStatus

@@ -9,5 +9,10 @@ import lostreport.infra.AbstractEvent;
 @ToString
 public class CreatedRemoteManage extends AbstractEvent {
 
-    private Long id;
+    private String imei;
+    private String userName;
+    private String status;
+    private String gps;
+    private Boolean lock;
+    private Boolean alarm;
 }

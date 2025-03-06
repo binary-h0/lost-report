@@ -9,5 +9,7 @@ import lostreport.infra.AbstractEvent;
 @ToString
 public class ChangedLostDeviceStatus extends AbstractEvent {
 
-    private Long id;
+    private String imei;
+    private String status;
+    private String lostAt;
 }
