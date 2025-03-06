@@ -8,12 +8,7 @@ import java.util.Map;
 import javax.persistence.*;
 import lombok.Data;
 import lostreport.FindApplication;
-import lostreport.domain.AlarmRequested;
-import lostreport.domain.FindRequestCanceled;
-import lostreport.domain.FindRequestFinished;
-import lostreport.domain.GpsRequested;
-import lostreport.domain.LockRequested;
-import lostreport.domain.TmpPhoneRequested;
+import lostreport.domain.FindRequested;
 
 @Entity
 @Table(name = "FindManage_table")
@@ -43,23 +38,8 @@ public class FindManage {
 
     @PostPersist
     public void onPostPersist() {
-        FindRequestCanceled findRequestCanceled = new FindRequestCanceled(this);
-        findRequestCanceled.publishAfterCommit();
-
-        FindRequestFinished findRequestFinished = new FindRequestFinished(this);
-        findRequestFinished.publishAfterCommit();
-
-        GpsRequested gpsRequested = new GpsRequested(this);
-        gpsRequested.publishAfterCommit();
-
-        LockRequested lockRequested = new LockRequested(this);
-        lockRequested.publishAfterCommit();
-
-        AlarmRequested alarmRequested = new AlarmRequested(this);
-        alarmRequested.publishAfterCommit();
-
-        TmpPhoneRequested tmpPhoneRequested = new TmpPhoneRequested(this);
-        tmpPhoneRequested.publishAfterCommit();
+        FindRequested findRequested = new FindRequested(this);
+        findRequested.publishAfterCommit();
     }
 
     public static FindManageRepository repository() {
@@ -70,11 +50,56 @@ public class FindManage {
     }
 
     //<<< Clean Arch / Port Method
-    public void findRequest() {
+    public void findRequestCancel() {
         //implement business logic here:
 
-        FindRequested findRequested = new FindRequested(this);
-        findRequested.publishAfterCommit();
+        FindRequestCanceled findRequestCanceled = new FindRequestCanceled(this);
+        findRequestCanceled.publishAfterCommit();
+    }
+
+    //>>> Clean Arch / Port Method
+    //<<< Clean Arch / Port Method
+    public void findRequestFinish() {
+        //implement business logic here:
+
+        FindRequestFinished findRequestFinished = new FindRequestFinished(this);
+        findRequestFinished.publishAfterCommit();
+    }
+
+    //>>> Clean Arch / Port Method
+    //<<< Clean Arch / Port Method
+    public void gpsRequest() {
+        //implement business logic here:
+
+        GpsRequested gpsRequested = new GpsRequested(this);
+        gpsRequested.publishAfterCommit();
+    }
+
+    //>>> Clean Arch / Port Method
+    //<<< Clean Arch / Port Method
+    public void lockRequest() {
+        //implement business logic here:
+
+        LockRequested lockRequested = new LockRequested(this);
+        lockRequested.publishAfterCommit();
+    }
+
+    //>>> Clean Arch / Port Method
+    //<<< Clean Arch / Port Method
+    public void alarmRequest() {
+        //implement business logic here:
+
+        AlarmRequested alarmRequested = new AlarmRequested(this);
+        alarmRequested.publishAfterCommit();
+    }
+
+    //>>> Clean Arch / Port Method
+    //<<< Clean Arch / Port Method
+    public void tmpPhoneRequest() {
+        //implement business logic here:
+
+        TmpPhoneRequested tmpPhoneRequested = new TmpPhoneRequested(this);
+        tmpPhoneRequested.publishAfterCommit();
     }
 
     //>>> Clean Arch / Port Method

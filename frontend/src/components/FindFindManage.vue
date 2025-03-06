@@ -50,42 +50,7 @@
                     text
                     @click="save"
                 >
-                    FindRequestCancel
-                </v-btn>
-                <v-btn
-                    color="primary"
-                    text
-                    @click="save"
-                >
-                    FindRequestFinish
-                </v-btn>
-                <v-btn
-                    color="primary"
-                    text
-                    @click="save"
-                >
-                    GpsRequest
-                </v-btn>
-                <v-btn
-                    color="primary"
-                    text
-                    @click="save"
-                >
-                    LockRequest
-                </v-btn>
-                <v-btn
-                    color="primary"
-                    text
-                    @click="save"
-                >
-                    AlarmRequest
-                </v-btn>
-                <v-btn
-                    color="primary"
-                    text
-                    @click="save"
-                >
-                    TmpPhoneRequest
+                    FindRequest
                 </v-btn>
                 <v-btn
                     color="primary"
@@ -103,9 +68,49 @@
                 v-if="!editMode"
                 color="primary"
                 text
-                @click="findRequest"
+                @click="findRequestCancel"
             >
-                FindRequest
+                FindRequestCancel
+            </v-btn>
+            <v-btn
+                v-if="!editMode"
+                color="primary"
+                text
+                @click="findRequestFinish"
+            >
+                FindRequestFinish
+            </v-btn>
+            <v-btn
+                v-if="!editMode"
+                color="primary"
+                text
+                @click="gpsRequest"
+            >
+                GpsRequest
+            </v-btn>
+            <v-btn
+                v-if="!editMode"
+                color="primary"
+                text
+                @click="lockRequest"
+            >
+                LockRequest
+            </v-btn>
+            <v-btn
+                v-if="!editMode"
+                color="primary"
+                text
+                @click="alarmRequest"
+            >
+                AlarmRequest
+            </v-btn>
+            <v-btn
+                v-if="!editMode"
+                color="primary"
+                text
+                @click="tmpPhoneRequest"
+            >
+                TmpPhoneRequest
             </v-btn>
         </v-card-actions>
 
@@ -241,18 +246,111 @@
             change(){
                 this.$emit('input', this.value);
             },
-            async findRequest() {
+            async findRequestCancel() {
                 try {
-                    if(!this.offline){
-                        var temp = await axios.post(axios.fixUrl(this.value._links['/findrequest'].href))
-                        for(var k in temp.data) this.value[k]=temp.data[k];
+                    if(!this.offline) {
+                        var temp = await axios.put(axios.fixUrl(this.value._links['findrequestcancel'].href))
+                        for(var k in temp.data) {
+                            this.value[k]=temp.data[k];
+                        }
                     }
 
                     this.editMode = false;
-                    
-                    this.$emit('input', this.value);
-                    this.$emit('delete', this.value);
-                
+                } catch(e) {
+                    this.snackbar.status = true
+                    if(e.response && e.response.data.message) {
+                        this.snackbar.text = e.response.data.message
+                    } else {
+                        this.snackbar.text = e
+                    }
+                }
+            },
+            async findRequestFinish() {
+                try {
+                    if(!this.offline) {
+                        var temp = await axios.put(axios.fixUrl(this.value._links['findrequestfinish'].href))
+                        for(var k in temp.data) {
+                            this.value[k]=temp.data[k];
+                        }
+                    }
+
+                    this.editMode = false;
+                } catch(e) {
+                    this.snackbar.status = true
+                    if(e.response && e.response.data.message) {
+                        this.snackbar.text = e.response.data.message
+                    } else {
+                        this.snackbar.text = e
+                    }
+                }
+            },
+            async gpsRequest() {
+                try {
+                    if(!this.offline) {
+                        var temp = await axios.put(axios.fixUrl(this.value._links['gpsrequest'].href))
+                        for(var k in temp.data) {
+                            this.value[k]=temp.data[k];
+                        }
+                    }
+
+                    this.editMode = false;
+                } catch(e) {
+                    this.snackbar.status = true
+                    if(e.response && e.response.data.message) {
+                        this.snackbar.text = e.response.data.message
+                    } else {
+                        this.snackbar.text = e
+                    }
+                }
+            },
+            async lockRequest() {
+                try {
+                    if(!this.offline) {
+                        var temp = await axios.put(axios.fixUrl(this.value._links['lockrequest'].href))
+                        for(var k in temp.data) {
+                            this.value[k]=temp.data[k];
+                        }
+                    }
+
+                    this.editMode = false;
+                } catch(e) {
+                    this.snackbar.status = true
+                    if(e.response && e.response.data.message) {
+                        this.snackbar.text = e.response.data.message
+                    } else {
+                        this.snackbar.text = e
+                    }
+                }
+            },
+            async alarmRequest() {
+                try {
+                    if(!this.offline) {
+                        var temp = await axios.put(axios.fixUrl(this.value._links['alarmrequest'].href))
+                        for(var k in temp.data) {
+                            this.value[k]=temp.data[k];
+                        }
+                    }
+
+                    this.editMode = false;
+                } catch(e) {
+                    this.snackbar.status = true
+                    if(e.response && e.response.data.message) {
+                        this.snackbar.text = e.response.data.message
+                    } else {
+                        this.snackbar.text = e
+                    }
+                }
+            },
+            async tmpPhoneRequest() {
+                try {
+                    if(!this.offline) {
+                        var temp = await axios.put(axios.fixUrl(this.value._links['tmpphonerequest'].href))
+                        for(var k in temp.data) {
+                            this.value[k]=temp.data[k];
+                        }
+                    }
+
+                    this.editMode = false;
                 } catch(e) {
                     this.snackbar.status = true
                     if(e.response && e.response.data.message) {
