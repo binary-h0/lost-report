@@ -14,4 +14,4 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
     path = "findManages"
 )
 public interface FindManageRepository
-    extends PagingAndSortingRepository<FindManage, Long> {}
+    extends PagingAndSortingRepository<FindManage, String> {}

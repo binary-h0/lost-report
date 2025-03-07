@@ -18,8 +18,7 @@ import lostreport.domain.FindRequested;
 public class FindManage {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private String id;
 
     private String userId;
 
@@ -37,8 +36,8 @@ public class FindManage {
 
     private String tmpPhoneStatus;
 
-    @PrePersist
-    public void onPrePersist() {
+    @PostPersist
+    public void onPostPersist() {
         FindRequested findRequested = new FindRequested(this);
         findRequested.publishAfterCommit();
     }
@@ -54,10 +53,6 @@ public class FindManage {
             FindManageRepository.class
         );
         return findManageRepository;
-    }
-
-    public void findRequestCancel() {
-        //
     }
 
     //<<< Clean Arch / Port Method

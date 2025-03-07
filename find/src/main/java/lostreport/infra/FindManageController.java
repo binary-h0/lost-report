@@ -26,7 +26,7 @@ public class FindManageController {
         produces = "application/json;charset=UTF-8"
     )
     public FindManage findRequestFinish(
-        @PathVariable(value = "id") Long id,
+        @PathVariable(value = "id") String id,
         HttpServletRequest request,
         HttpServletResponse response
     ) throws Exception {
@@ -49,7 +49,7 @@ public class FindManageController {
         produces = "application/json;charset=UTF-8"
     )
     public FindManage gpsRequest(
-        @PathVariable(value = "id") Long id,
+        @PathVariable(value = "id") String id,
         HttpServletRequest request,
         HttpServletResponse response
     ) throws Exception {
@@ -72,7 +72,7 @@ public class FindManageController {
         produces = "application/json;charset=UTF-8"
     )
     public FindManage lockRequest(
-        @PathVariable(value = "id") Long id,
+        @PathVariable(value = "id") String id,
         HttpServletRequest request,
         HttpServletResponse response
     ) throws Exception {
@@ -95,7 +95,7 @@ public class FindManageController {
         produces = "application/json;charset=UTF-8"
     )
     public FindManage alarmRequest(
-        @PathVariable(value = "id") Long id,
+        @PathVariable(value = "id") String id,
         HttpServletRequest request,
         HttpServletResponse response
     ) throws Exception {
@@ -118,7 +118,7 @@ public class FindManageController {
         produces = "application/json;charset=UTF-8"
     )
     public FindManage tmpPhoneRequest(
-        @PathVariable(value = "id") Long id,
+        @PathVariable(value = "id") String id,
         HttpServletRequest request,
         HttpServletResponse response
     ) throws Exception {
